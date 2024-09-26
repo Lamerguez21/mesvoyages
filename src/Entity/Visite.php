@@ -16,6 +16,9 @@ class Visite
 
     #[ORM\Column(length: 50)]
     private ?string $ville = null;
+    
+    #[ORM\Column(length: 50)]
+    private ?string $pays = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datecreation = null;
@@ -45,6 +48,18 @@ class Visite
     public function setVille(string $ville): static
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+    
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+    
+    public function setPays(string $pays): static
+    {
+        $this->pays = $pays;
 
         return $this;
     }
@@ -108,4 +123,14 @@ class Visite
 
         return $this;
     }
+    
+    public function getDatecreationString(): string
+    {
+        if($this->datecreation == null){
+            return"";
+        }else{
+            return $this->datecreation->format('d/m/y');
+        }
+    }
+    
 }
